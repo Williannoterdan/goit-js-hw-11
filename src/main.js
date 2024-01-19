@@ -25,9 +25,29 @@ search.addEventListener('click', () => {
                     <a class="gallery-link" href="" > 
                     <img
                         class="gallery-image"
-                        src="${his.largeImageURL}" 
-                        alt="" 
-                    />
+                        src="${his.largeImageURL}"
+                        date-largeiimmage="${his.largeImageURL}"
+                        alt="${his.tags}"/>
+                        <div class="desription">
+                      <div>
+                       <ul class="desription-ul">
+                        <li><p class="detal-description">Likes</p></li>
+                        <li><p class="detal-namber>${his.likes}</p></li>
+                        </ul>
+                        <ul class="desription-ul">
+                        <li><p class="detal-description">Views</p></li>
+                        <li><p>${his.views}</p></li>
+                        </ul>
+                        <ul class="desription-ul">
+                        <li><p class="detal-description">Comments</p></li>
+                        <li><p> ${his.views}</p></li>
+                        </ul>
+                        <ul class="desription-ul">
+                        <li><p class="detal-description">Downloads</p></li>
+                        <li><p> ${his.downloads}</p></li>
+                        </ul>
+                        </div>
+                      </div>  
                      </a>
                 </li>`
         );

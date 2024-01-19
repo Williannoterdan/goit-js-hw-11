@@ -23,3 +23,25 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+.page-galery{
+  display: flex;
+  flex-wrap: wrap;
+}
+.gallery-item{
+  width: calc(18%);
+  border: solid black 1px;
+  margin: 5px;
+}
+
+
+.desription{
+    display: flex;
+    flex-direction: row;
+    }
+ .detal-description{
+  font-size: 10px;
+ }
+.detal-namber{
+
+  font-size: 10px;
+}
