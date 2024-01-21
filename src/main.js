@@ -1,63 +1,73 @@
+
+import SimpleLightbox from 'simplelightbox';
+
 const search = document.querySelector('button[data-search]');
 const texSearch = document.querySelector('input[data-search]');
-const imageList = document.querySelector('ul[data-galery]');
-console.log('imageList', imageList);
+const gallery = document.querySelector('ul[data-galery]');
 search.addEventListener('click', () => {
-  console.log('LK');
-  console.log(texSearch.value);
 
+  console.log(texSearch.value);
   fetch(
     `https://pixabay.com/api/?key=41882079-7b8447de07a92fa31409d09e7&q="${texSearch.value}"&image_type=photo&orientation=horizontal&safesearch=true`
   )
+    
     .then(response => {
       if (!response.ok) {
         throw new Error(response.status);
       }
+      console.log(response);
       return response.json();
     })
-    .then(re => {
-      console.log(re.hits);
-      for (const his of re.hits) {
-        console.log(his.previewURL);
-        imageList.insertAdjacentHTML(
-          'afterbegin',
-          `<li class="gallery-item" onclick="return false" >
-            <a class="gallery-link"  href="${his.largeImageURL}"> 
-              <img
+    .then(response => {
+      let images = response.hits;
+      console.log(images);
+        gallery.innerHTML="";
+      gallery.insertAdjacentHTML(
+        'afterbegin',
+        images
+          .map(
+            x =>
+              `<li class="gallery" onclick="return false">
+                    <a class="gallery-link" href="${x.largeImageURL}" > 
+                    <img
+                        class="gallery-image"
+                        
               class="gallery-image"
-              src="${his.largeImageURL}"
-              date-largeiimmage="${his.largeImageURL}"
-              alt="${his.tags}"/>
-                <div class="desription">
-                  <ul class="desription-ul">
+              src="${x.largeImageURL}"
+              date-largeiimmage="${x.largeImageURL}"
+              alt="${x.tags}"/ 
+                    />
+                     
+                     <div class="desription">
                           <div>
-                            <ul>
-                             <li><p class="detal-description">Likes</p></li>
-                             <li><p class="detal-namber">${his.likes}</p></li>
-                            </ul>
+                             <p class="detal-description">Likes</p>
+                             <p class="detal-namber">${x.likes}</p>
                           </div>
                           <div>
-                             <ul class="desription-ul">
-                              <li><p class="detal-description">Views</p></li>
-                              <li><p>${his.views}</p></li>
-                             </ul>
+                              <p class="detal-description">Views</p>
+                              <p class="detal-namber">${x.views}</p>
                           </div>
                           <div>
-                            <ul class="desription-ul">
-                              <li><p class="detal-description">Comments</p></li>
-                              <li><p> ${his.views}</p></li>
-                            </ul>
+                              <p class="detal-description">Comments</p>
+                              <p class="detal-namber">${x.views}</p>
+
                           </div>
                           <div>
-                            <ul class="desription-ul">
-                              <li><p class="detal-description">Downloads</p></li>
-                              <li><p> ${his.downloads}</p></li>
+                              <p class="detal-description">Downloads</p>
+                              <p class="detal-namber">${x.downloads}</p>
                           </div>
-                  </ul>
-                </div>  
-            </a>
-          </li>`
-        );
-      }
-    });
+                        </div>
+                  </a>
+                </li>`
+          )
+          .join('')
+      );
+            
+            var lightbox = new SimpleLightbox('.gallery a', {
+              /* options */
+            });
+    })
+
+    
 });
+
