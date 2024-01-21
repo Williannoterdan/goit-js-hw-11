@@ -12,6 +12,7 @@ search.addEventListener('click', () => {
   )
     
     .then(response => {
+      document.body
       if (!response.ok) {
         throw new Error(response.status);
       }
