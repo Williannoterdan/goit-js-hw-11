@@ -1,5 +1,8 @@
 
 import SimpleLightbox from 'simplelightbox';
+import iziToast from 'izitoast';
+
+
 
 const search = document.querySelector('button[data-search]');
 const texSearch = document.querySelector('input[data-search]');
@@ -9,11 +12,10 @@ search.addEventListener('click', () => {
   console.log(texSearch.value);
   fetch(
     `https://pixabay.com/api/?key=41882079-7b8447de07a92fa31409d09e7&q="${texSearch.value}"&image_type=photo&orientation=horizontal&safesearch=true`
-  )
-    
-    .then(response => {
+  ).then(response => {
       document.body
-      if (!response.ok) {
+    if (!response.ok) {
+
         throw new Error(response.status);
       }
       console.log(response);
@@ -21,14 +23,18 @@ search.addEventListener('click', () => {
     })
     .then(response => {
       let images = response.hits;
+      if (images.length < 1) {
+                iziToast.error({
+                  title: '❌',
+                  message: `Rejected`,
+                });
+      }
       console.log(images);
-        gallery.innerHTML="";
-      gallery.insertAdjacentHTML(
-        'afterbegin',
-        images
-          .map(
-            x =>
-              `<li class="gallery" onclick="return false">
+      gallery.innerHTML = "";
+      let galeryHtml = images
+        .map(
+          x =>
+            `<li class="gallery" onclick="return false">
                     <a class="gallery-link" href="${x.largeImageURL}" > 
                     <img
                         class="gallery-image"
@@ -60,13 +66,15 @@ search.addEventListener('click', () => {
                         </div>
                   </a>
                 </li>`
-          )
-          .join('')
-      );
+        )
+        .join('');
+
+      gallery.insertAdjacentHTML('afterbegin', galeryHtml);
+        
             
-            var lightbox = new SimpleLightbox('.gallery a', {
-              /* options */
-            });
+    var lightbox = new SimpleLightbox('.gallery a', {
+      /* options */
+    });        
     })
 
     
