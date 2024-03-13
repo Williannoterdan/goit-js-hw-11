@@ -1,11 +1,9 @@
 
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-
 export default function renderImage(imagesResorch, gallery) {
-  imagesResorch  
-    .then(response => {
-        gallery.insertAdjacentHTML('afterbegin', `<div class="loader"></div>`);
+  imagesResorch.then(response => {
+    gallery.insertAdjacentHTML('afterbegin', `<div class="loader"></div>`);
     let images = response.hits;
     if (images.length < 1) {
       iziToast.error({
@@ -50,7 +48,6 @@ export default function renderImage(imagesResorch, gallery) {
       .join('');
 
     gallery.insertAdjacentHTML('afterbegin', galeryHtml);
+
   });
 }
-
-

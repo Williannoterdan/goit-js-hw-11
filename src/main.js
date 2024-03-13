@@ -10,9 +10,11 @@ const gallery = document.querySelector('ul[data-galery]');
 search.addEventListener('click', () => {
   gallery.innerHTML = '';
   renderImage(fetchImage(texSearch.value), gallery);
-        
+  
+
   
 });
+
 document.addEventListener('click', event => {
 
 
