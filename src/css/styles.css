@@ -44,8 +44,11 @@
     width: 280px;
     height: 200px;
     transition-duration: 2s;
+      visibility: visible;
 }
-
+.gallery-off{
+  visibility: hidden;
+}
 
 
 .desription{
@@ -106,12 +109,11 @@ form{
   transform: rotateX(70deg);
   animation: 1s spin linear infinite;
 }
-
-.loader:after {
-  color: #FF3D00;
-  transform: rotateY(70deg);
-  animation-delay: .4s;
+.position{
+padding: 100px;
+margin: 25px;
 }
+
 
 @keyframes rotate {
   0% {

@@ -12,11 +12,17 @@ search.addEventListener('click', () => {
   renderImage(fetchImage(texSearch.value), gallery);
   
 
-  
+    window.onload = function () {
+      console.log('Loaded1');
+    };  
 });
-
+    window.onload = function () {
+      console.log("Loaded2");
+    };
 document.addEventListener('click', event => {
-
+    window.onload = function () {
+      console.log('Loaded3');
+    };
 
 const lightbox = new SimpleLightbox('.gallery a', {
   captions: true,
